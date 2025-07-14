@@ -34,6 +34,10 @@ function Install {
 
     echo "SteamOSRootReback: Installing hooks..."
 
+    if [[ ! "$(pwd)" == "$HOOKS_DIR" ]]; then
+        cd $HOOKS_DIR
+    fi
+
     if [[ $# -eq 0 ]]; then
         shopt -s nullglob
         for file in $HOOKS_DIR/*.hook; do
@@ -104,6 +108,10 @@ function Uninstall {
     steamos-readonly disable
 
     echo "SteamOSRootReback: Uninstalling hooks..."
+
+    if [[ ! "$(pwd)" == "$HOOKS_DIR" ]]; then
+        cd $HOOKS_DIR
+    fi
 
     function RemoveFromInstalled {
         local hook_path=$1
