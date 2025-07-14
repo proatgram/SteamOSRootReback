@@ -195,12 +195,13 @@ if [ "x$1" == "x" ]; then
         echo "SteamOSRootReback: Changes to rootfs not present."
         echo "SteamOSRootReback: Reinstalling..."
 
+        steamos-readonly disable
         mkdir -p "/usr/share/SteamOSRootReback/"
         touch $INSTALLED_HOOKS
 
-        Install
-
         ln -s "$BASE_DIR/SteamOSRootReback.sh" "/usr/bin/SteamOSRootReback"
+
+        Install
 
         echo "SteamOSRootReback: Installed."
     fi
