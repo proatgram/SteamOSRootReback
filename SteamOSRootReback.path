@@ -1,0 +1,9 @@
+[Unit]
+Description="Monitoring /etc/SteamOSRootReback/hooks.d/ for changes"
+
+[Path]
+PathChanged=/etc/SteamOSRootReback/hooks.d/
+Unit=SteamOSRootReback.service
+
+[Install]
+WantedBy=multi-user.target
