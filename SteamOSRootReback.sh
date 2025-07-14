@@ -34,8 +34,8 @@ function Install {
 
     echo "SteamOSRootReback: Installing hooks..."
 
-    if [[ ! "$(pwd)" == "$HOOKS_DIR" ]]; then
-        cd $HOOKS_DIR
+    if [[ ! "$(pwd)" == "$BASE_DIR/working" ]]; then
+        cd "$BASE_DIR/working"
     fi
 
     if [[ $# -eq 0 ]]; then
@@ -109,8 +109,8 @@ function Uninstall {
 
     echo "SteamOSRootReback: Uninstalling hooks..."
 
-    if [[ ! "$(pwd)" == "$HOOKS_DIR" ]]; then
-        cd $HOOKS_DIR
+    if [[ ! "$(pwd)" == "$BASE_DIR/working" ]]; then
+        cd "$BASE_DIR/working"
     fi
 
     function RemoveFromInstalled {
