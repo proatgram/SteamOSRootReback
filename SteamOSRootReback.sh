@@ -81,14 +81,12 @@ function Install {
             (
                 source "$HOOK_PATH" || {
                     echo "SteamOSRootReback: Failed to source $HOOK_PATH" >&2
-                    continue
                 }
 
                 echo " => ${HOOK_NAME:-Unknown Hook}"
 
                 if ! HookInstall; then
                     echo "SteamOSRootReback: HookInstall failed for $HOOK_PATH" >&2
-                    continue
                 fi
             )
 
@@ -121,14 +119,12 @@ function Uninstall {
             (
                 source "$HOOK_PATH" || {
                     echo "SteamOSRootReback: Failed to source $HOOK_PATH" >&2
-                    continue
                 }
 
                 echo " => ${HOOK_NAME:-Unknown Hook}"
 
                 if ! HookUninstall; then
                     echo "SteamOSRootReback: HookUninstall failed for $HOOK_PATH" >&2
-                    continue
                 fi
             )
         done
@@ -154,14 +150,12 @@ function Uninstall {
             (
                 source "$HOOK_PATH" || {
                     echo "SteamOSRootReback: Failed to source $HOOK_PATH" >&2
-                    continue
                 }
 
                 echo " => ${HOOK_NAME:-Unknown Hook}"
 
                 if ! HookUninstall; then
                     echo "SteamOSRootReback: HookUninstall failed for $HOOK_PATH" >&2
-                    continue
                 fi
             )
 
