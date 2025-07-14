@@ -123,8 +123,8 @@ function Uninstall {
 
     if [[ $# -eq 0 ]]; then
         shopt -s nullglob
-        for file in "$HOOKS_DIR/*.hook"; do
-            if [[ ! -f "$HOOK_PATH" ]]; then
+        for file in $HOOKS_DIR/*.hook; do
+            if [[ ! -f "$file" ]]; then
                 continue
             fi
 
