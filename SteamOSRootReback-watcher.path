@@ -3,7 +3,7 @@ Description="Monitoring /etc/SteamOSRootReback/hooks.d/ for changes"
 
 [Path]
 PathChanged=/etc/SteamOSRootReback/hooks.d/
-Unit=SteamOSRootReback.service
+Unit=SteamOSRootReback-watcher.service
 
 [Install]
 WantedBy=multi-user.target

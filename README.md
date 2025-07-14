@@ -3,7 +3,7 @@ A set of user and system systemd services and scripts to manage and reinstall us
 
 ## How it works
 
-The systemd service will execute the `SteamOSRootReback.sh` script, which will manage the immutable rootfs by changing it to read-write, running hooks that modify the rootfs, and then changing the rootfs back to read-only. This script will run anytime the system updates, and whenever a new hook is added to the hooks.d directory in /etc/SteamOSRootReback/hooks.d/. Additionally, it can uninstall hooks, but currently this is only used when uninstalling SteamOSRootReback itself.
+The systemd service will execute the `SteamOSRootReback.sh` script, which will manage the immutable rootfs by changing it to read-write, running hooks that modify the rootfs, and then changing the rootfs back to read-only. This script will run anytime the system updates, and whenever a new hook is added to the hooks.d directory in /etc/SteamOSRootReback/hooks.d/. Additionally, it can uninstall hooks as well using the symbolically linked `SteamOSRootReback uninstall [hook]` command.
 
 ## Installing
 
@@ -19,6 +19,8 @@ sudo ./install.sh
 ```
 
 Then you are all set!
+
+The `install.sh` script installs the systemd services and paths, along with copying a copy of them to the `/etc/SteamOSRootReback` directory to restore upon system update. It also creates the directories, and creates a `/usr/share/SteamOSRootReback/installed_hooks.txt` file, which will not only be used to show the currently installed hooks, but also serve as an indicator if the SteamDeck has been updated. It also links the `SteamOSRootReback.sh` script to `/usr/bin/SteamOSRootReback` so you can run it as you please.
 
 ## Adding hooks
 
@@ -69,3 +71,16 @@ As stated before, all hooks are run as root (through the system systemd service)
 
 #### `HookUninstall`
 In the case that you need to uninstall a hooks modification, the `HookUninstall` can handle this. In this function, you place what needs to be done to undo what was done in `HookInstall`.
+
+## Uninstalling hooks
+
+In the event that you would like to uninstall a hook, you can run:
+```
+SteamOSRootReback(.sh) uninstall [hook]
+```
+
+Where `hook` is the hook name.
+
+This will not remove the hookfile, but it will append ".uninstalled" to the filename so that you can know that it is, and that it doesn't get reinstalled automatically.
+
+To reinstall it, either remove the ".uninstalled" file extention, or run `SteamOSRootReback(.sh)` install `hookfile.sh.hook.uninstalled`
