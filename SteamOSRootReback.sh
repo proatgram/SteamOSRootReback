@@ -125,7 +125,7 @@ function Uninstall {
         shopt -s nullglob
         for file in "$HOOKS_DIR/*.hook"; do
             (
-                source "$HOOK_PATH" || {
+                source "$file" || {
                     echo "SteamOSRootReback: Failed to source $HOOK_PATH" >&2
                 }
 
@@ -135,11 +135,12 @@ function Uninstall {
                     echo "SteamOSRootReback: HookUninstall failed for $HOOK_PATH" >&2
                 fi
             )
+
+            RemoveFromInstalled "$file"
+            mv "$file" "$file.uninstalled"
         done
         shopt -u nullglob
 
-        RemoveFromInstalled "$file"
-        mv "$file" "$file.uninstalled"
     else
         for file in "$@"; do
             HOOK_PATH=$(
