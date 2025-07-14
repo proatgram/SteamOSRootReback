@@ -7,6 +7,7 @@ function Install() {
     steamos-readonly disable
 
     mkdir -p $ROOT_DIR
+    mkdir -p $ROOT_DIR/working
 
     mkdir -p "/usr/share/SteamOSRootReback"
     touch "/usr/share/SteamOSRootReback/installed_hooks.txt"
