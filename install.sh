@@ -40,6 +40,7 @@ function Uninstall() {
     systemctl daemon-reload
 
     $ROOT_DIR/SteamOSRootReback.sh uninstall
+    steamos-readonly disable # Because uninstall enables it again
 
     rm /usr/share/SteamOSRootReback/installed_hooks.txt
     rmdir /usr/share/SteamOSRootReback
