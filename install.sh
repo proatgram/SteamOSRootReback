@@ -4,6 +4,8 @@ ROOT_DIR="/etc/SteamOSRootReback"
 PWD=$(pwd)
 
 function Install() {
+    steamos-readonly disable
+
     mkdir -p $ROOT_DIR
 
     mkdir -p "/usr/share/SteamOSRootReback"
@@ -19,9 +21,13 @@ function Install() {
     systemctl enable --now SteamOSRootReback.service
     systemctl enable --now SteamOSRootReback-watcher.service
     systemctl enable --now SteamOSRootReback-watcher.path
+
+    steamos-readonly enable
 }
 
 function Uninstall() {
+    steamos-readonly disable
+
     systemctl disable --now SteamOSRootReback.service
     systemctl disable --now SteamOSRootReback-watcher.path
     systemctl disable --now SteamOSRootReback-watcher.service
@@ -39,6 +45,8 @@ function Uninstall() {
 
     rm "/usr/bin/SteamOSRootReback"
     rm "$ROOT_DIR/SteamOSRootReback.sh"
+
+    steamos-readonly enable
 }
 
 if [ "x$1" == "x" ]; then
