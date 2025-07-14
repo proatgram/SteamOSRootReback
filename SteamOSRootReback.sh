@@ -123,7 +123,7 @@ function Uninstall {
 
     if [[ $# -eq 0 ]]; then
         shopt -s nullglob
-        for file in $HOOKS_DIR/*.hook; do
+        for file in "$HOOKS_DIR/*.hook"; do
             (
                 source "$HOOK_PATH" || {
                     echo "SteamOSRootReback: Failed to source $HOOK_PATH" >&2
